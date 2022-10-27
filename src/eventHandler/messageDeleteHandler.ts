@@ -1,7 +1,4 @@
-import {
-    Message,
-    PartialMessage,
-} from "discord.js";
+import { Message, PartialMessage } from "discord.js";
 import * as Sentry from "@sentry/node";
 import "@sentry/tracing";
 import { redis } from "../redis";

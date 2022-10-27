@@ -7,6 +7,7 @@ import {
 export const addRoleItemCommand = new SlashCommandBuilder()
     .setName("add-role-picker-item")
     .setDescription("Add a role to a role picker")
+    .setDefaultMemberPermissions(0)
     .addStringOption(
         new SlashCommandStringOption()
             .setName("message-id")
