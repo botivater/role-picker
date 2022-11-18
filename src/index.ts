@@ -59,6 +59,8 @@ client.once(Events.ClientReady, (c) => {
                 PermissionFlagsBits.ManageEmojisAndStickers,
                 PermissionFlagsBits.ManageRoles,
                 PermissionFlagsBits.ReadMessageHistory,
+                PermissionFlagsBits.ViewChannel,
+                PermissionFlagsBits.AddReactions,
             ],
         })}`
     );

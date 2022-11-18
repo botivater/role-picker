@@ -37,6 +37,7 @@ COPY --from=builder --chown=node:node /home/node/package.json ./
 COPY --from=builder --chown=node:node /home/node/yarn.lock ./
 COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
 COPY --from=builder --chown=node:node /home/node/out/ ./out/
+COPY --from=builder --chown=node:node /home/node/entrypoint.sh ./
 
 # Run the startup script
-CMD yarn start
+CMD entrypoint.sh

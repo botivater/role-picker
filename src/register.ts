@@ -9,11 +9,15 @@ import {
     Routes,
 } from "discord.js";
 import { createRolePickerCommand } from "./command/createRolePickerCommand";
-import { addRoleItemCommand as addRolePickerItemCommand } from "./command/addRolePickerItemCommand";
+import { addRolePickerItemCommand } from "./command/addRolePickerItemCommand";
+import { removeRolePickerItemCommand } from "./command/removeRolePickerItemCommand";
+import { editRolePickerCommand } from "./command/editRolePickerCommand";
 
 const commands: RESTPutAPIApplicationCommandsJSONBody = [
     createRolePickerCommand.toJSON(),
+    editRolePickerCommand.toJSON(),
     addRolePickerItemCommand.toJSON(),
+    removeRolePickerItemCommand.toJSON(),
 ];
 
 const rest = new REST({ version: "10" }).setToken(

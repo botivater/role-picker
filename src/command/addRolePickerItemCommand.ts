@@ -4,7 +4,7 @@ import {
     SlashCommandStringOption,
 } from "discord.js";
 
-export const addRoleItemCommand = new SlashCommandBuilder()
+export const addRolePickerItemCommand = new SlashCommandBuilder()
     .setName("add-role-picker-item")
     .setDescription("Add a role to a role picker")
     .setDefaultMemberPermissions(0)

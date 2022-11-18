@@ -12,7 +12,8 @@
         "start:dev": "nodemon src/index.ts",
         "build": "tsc",
         "lint": "eslint src/",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "commands:register": "ts-node src/register.ts"
     },
     "dependencies": {
         "@sentry/node": "^7.17.1",

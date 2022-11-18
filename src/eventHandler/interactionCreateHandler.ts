@@ -1,10 +1,16 @@
 import { CacheType, Interaction } from "discord.js";
-import { addRoleItemCommand } from "../command/addRolePickerItemCommand";
+import { addRolePickerItemCommand } from "../command/addRolePickerItemCommand";
 import { createRolePickerCommand } from "../command/createRolePickerCommand";
+import { editRolePickerCommand } from "../command/editRolePickerCommand";
+import { removeRolePickerItemCommand } from "../command/removeRolePickerItemCommand";
 import { addRolePickerItemChatInputCommandHandler } from "../handler/addRolePickerItemChatInputCommandHandler";
 import { createRolePickerChatInputCommandHandler } from "../handler/createRolePickerChatInputCommandHandler";
 import { createRolePickerModalSubmitHandler } from "../handler/createRolePickerModalSubmitHandler";
+import { editRolePickerChatInputCommandHandler } from "../handler/editRolePickerChatInputCommandHandler";
+import { editRolePickerModalSubmitHandler } from "../handler/editRolePickerModalSubmitHandler";
+import { removeRolePickerItemChatInputCommandHandler } from "../handler/removeRolePickerItemChatInputCommandHandler";
 import { CreateRolePickerModalID } from "../modal/createRolePickerModal";
+import { EditRolePickerModalID } from "../modal/editRolePickerModal";
 
 export const interactionCreateHandler = async (
     interaction: Interaction<CacheType>
@@ -15,8 +21,16 @@ export const interactionCreateHandler = async (
                 await createRolePickerChatInputCommandHandler(interaction);
                 break;
 
-            case addRoleItemCommand.name:
+            case editRolePickerCommand.name:
+                await editRolePickerChatInputCommandHandler(interaction);
+                break;
+
+            case addRolePickerItemCommand.name:
                 await addRolePickerItemChatInputCommandHandler(interaction);
+                break;
+
+            case removeRolePickerItemCommand.name:
+                await removeRolePickerItemChatInputCommandHandler(interaction);
                 break;
 
             default:
@@ -28,6 +42,10 @@ export const interactionCreateHandler = async (
         switch (interaction.customId) {
             case CreateRolePickerModalID:
                 await createRolePickerModalSubmitHandler(interaction);
+                break;
+
+            case EditRolePickerModalID:
+                await editRolePickerModalSubmitHandler(interaction);
                 break;
 
             default:
