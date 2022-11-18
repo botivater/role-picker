@@ -40,4 +40,4 @@ COPY --from=builder --chown=node:node /home/node/out/ ./out/
 COPY --from=builder --chown=node:node /home/node/entrypoint.sh ./
 
 # Run the startup script
-CMD entrypoint.sh
+CMD ./entrypoint.sh
