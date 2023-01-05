@@ -1,7 +1,7 @@
 import {
     ActionRowBuilder,
     CacheType,
-    ChatInputCommandInteraction,
+    MessageContextMenuCommandInteraction,
     ModalActionRowComponentBuilder,
     ModalBuilder,
     TextInputBuilder,
@@ -15,21 +15,17 @@ import {
 import * as Sentry from "@sentry/node";
 import "@sentry/tracing";
 
-export const editRolePickerChatInputCommandHandler = async (
-    interaction: ChatInputCommandInteraction<CacheType>
+export const editRolePickerMessageContextMenuCommandHandler = async (
+    interaction: MessageContextMenuCommandInteraction<CacheType>
 ) => {
     const transaction = Sentry.startTransaction({
-        op: "editRolePickerChatInputCommandHandler",
-        name: "Edit a role picker chat input command handler",
+        op: "editRolePickerMessageContextMenuCommandHandler",
+        name: "Edit a role picker message context menu command handler",
     });
 
     try {
         if (!interaction.guildId) throw new Error("guildId missing");
         if (!interaction.channelId) throw new Error("channelId missing");
-
-        const messageId = interaction.options.getString("message-id");
-
-        if (!messageId) throw new Error("messageId missing");
 
         await interaction.client.guilds.fetch(interaction.guildId);
         const guild = interaction.client.guilds.cache.get(interaction.guildId);
@@ -50,12 +46,12 @@ export const editRolePickerChatInputCommandHandler = async (
                 `Discord guild channel ${interaction.channelId} in guild ${interaction.guildId} is not a text based channel`
             );
 
-        await channel.messages.fetch(messageId);
-        const message = channel.messages.cache.get(messageId);
+        await channel.messages.fetch(interaction.targetId);
+        const message = channel.messages.cache.get(interaction.targetId);
 
         if (!message)
             throw new Error(
-                `Message ${messageId} not found in guild channel ${interaction.channelId} in guild ${interaction.guildId}`
+                `Message ${interaction.targetId} not found in guild channel ${interaction.channelId} in guild ${interaction.guildId}`
             );
 
         const messageIdInput = new TextInputBuilder()

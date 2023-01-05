@@ -40,10 +40,10 @@ export const client = new Client({
     ],
 });
 
-client.on("interactionCreate", interactionCreateHandler);
-client.on("messageReactionAdd", messageReactionAddHandler);
-client.on("messageReactionRemove", messageReactionRemoveHandler);
-client.on("messageDelete", messageDeleteHandler);
+client.on(Events.InteractionCreate, interactionCreateHandler);
+client.on(Events.MessageReactionAdd, messageReactionAddHandler);
+client.on(Events.MessageReactionRemove, messageReactionRemoveHandler);
+client.on(Events.MessageDelete, messageDeleteHandler);
 
 client.once(Events.ClientReady, (c) => {
     console.log(`Ready! Logged in as "${c.user.tag}"`);

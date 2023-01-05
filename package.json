@@ -14,26 +14,27 @@
         "lint": "eslint src/",
         "format": "prettier --write .",
         "commands:register": "node out/register.js",
-        "commands:register:dev": "ts-node src/register.ts"
+        "commands:register:dev": "ts-node src/register.ts",
+        "podman:redis:dev": "podman run --rm -p 6379:6379 docker.io/redis:latest"
     },
     "dependencies": {
-        "@sentry/node": "^7.17.1",
-        "@sentry/tracing": "^7.17.1",
-        "discord.js": "^14.6.0",
+        "@sentry/node": "^7.29.0",
+        "@sentry/tracing": "^7.29.0",
+        "discord.js": "^14.7.1",
         "dotenv": "^16.0.3",
-        "ioredis": "^5.2.3",
+        "ioredis": "^5.2.4",
         "yup": "^0.32.11"
     },
     "devDependencies": {
-        "@types/node": "^18.11.2",
-        "@typescript-eslint/eslint-plugin": "^5.40.1",
-        "@typescript-eslint/parser": "^5.40.1",
-        "eslint": "^8.25.0",
-        "eslint-config-prettier": "^8.5.0",
+        "@types/node": "^18.11.18",
+        "@typescript-eslint/eslint-plugin": "^5.48.0",
+        "@typescript-eslint/parser": "^5.48.0",
+        "eslint": "^8.31.0",
+        "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-prettier": "^4.2.1",
         "nodemon": "^2.0.20",
-        "prettier": "^2.7.1",
+        "prettier": "^2.8.1",
         "ts-node": "^10.9.1",
-        "typescript": "^4.8.4"
+        "typescript": "^4.9.4"
     }
 }

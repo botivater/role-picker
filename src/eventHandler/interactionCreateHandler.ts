@@ -1,12 +1,12 @@
 import { CacheType, Interaction } from "discord.js";
 import { addRolePickerItemCommand } from "../command/addRolePickerItemCommand";
 import { createRolePickerCommand } from "../command/createRolePickerCommand";
-import { editRolePickerCommand } from "../command/editRolePickerCommand";
 import { removeRolePickerItemCommand } from "../command/removeRolePickerItemCommand";
+import { editRolePickerContextMenu } from "../contextMenu/editRolePickerContextMenu";
 import { addRolePickerItemChatInputCommandHandler } from "../handler/addRolePickerItemChatInputCommandHandler";
 import { createRolePickerChatInputCommandHandler } from "../handler/createRolePickerChatInputCommandHandler";
 import { createRolePickerModalSubmitHandler } from "../handler/createRolePickerModalSubmitHandler";
-import { editRolePickerChatInputCommandHandler } from "../handler/editRolePickerChatInputCommandHandler";
+import { editRolePickerMessageContextMenuCommandHandler } from "../handler/editRolePickerMessageContextMenuCommandHandler";
 import { editRolePickerModalSubmitHandler } from "../handler/editRolePickerModalSubmitHandler";
 import { removeRolePickerItemChatInputCommandHandler } from "../handler/removeRolePickerItemChatInputCommandHandler";
 import { CreateRolePickerModalID } from "../modal/createRolePickerModal";
@@ -19,10 +19,6 @@ export const interactionCreateHandler = async (
         switch (interaction.commandName) {
             case createRolePickerCommand.name:
                 await createRolePickerChatInputCommandHandler(interaction);
-                break;
-
-            case editRolePickerCommand.name:
-                await editRolePickerChatInputCommandHandler(interaction);
                 break;
 
             case addRolePickerItemCommand.name:
@@ -46,6 +42,19 @@ export const interactionCreateHandler = async (
 
             case EditRolePickerModalID:
                 await editRolePickerModalSubmitHandler(interaction);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    if (interaction.isMessageContextMenuCommand()) {
+        switch (interaction.commandName) {
+            case editRolePickerContextMenu.name:
+                await editRolePickerMessageContextMenuCommandHandler(
+                    interaction
+                );
                 break;
 
             default:
