@@ -1,6 +1,6 @@
 {
     "name": "role-picker",
-    "version": "1.0.5",
+    "version": "1.1.0",
     "description": "Role Picker Bot",
     "main": "src/index.ts",
     "repository": "https://github.com/botivater/role-picker.git",
