@@ -1,9 +1,17 @@
 name: Release containers
 
 on:
-    push:
-        tags:
-            - "v*.*.*"
+  push:
+    branches-ignore:
+      - "main"
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      test_tag:
+        description: "Optional test tag suffix (defaults to branch name)"
+        required: false
+        type: string
 
 jobs:
     docker:
@@ -24,11 +32,11 @@ jobs:
                       ghcr.io/botivater/${{ matrix.application }}
                   # Generate Docker tags based on the following events/attributes
                   tags: |
-                      type=ref,event=branch
-                      type=semver,pattern={{version}}
-                      type=semver,pattern={{major}}.{{minor}}
-                      type=semver,pattern={{major}}
-                      type=sha
+                      type=raw,value=test-${{ inputs.test_tag || github.ref_name }},enable=${{ github.ref_type == 'branch' || github.event_name == 'workflow_dispatch' }}
+                      type=semver,pattern={{version}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+                      type=semver,pattern={{major}}.{{minor}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+                      type=semver,pattern={{major}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+                      type=sha,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
             - name: Setup QEMU
               uses: docker/setup-qemu-action@v2
 
