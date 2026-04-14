@@ -1,4 +1,4 @@
 #!/bin/sh
 
-yarn commands:register
-yarn start
+role-picker-register
+role-picker
