@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "role-picker"
+version = "1.2.1"
+description = "Discord role picker bot as a reusable Python library"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [
+  { name = "Jonas Claes" }
+]
+dependencies = [
+  "discord.py>=2.5.0",
+  "redis>=6.0.0",
+  "python-dotenv>=1.0.1",
+  "sentry-sdk>=2.20.0"
+]
+
+[project.urls]
+Repository = "https://github.com/botivater/role-picker.git"
+
+[project.scripts]
+role-picker = "role_picker.cli:main"
+role-picker-register = "role_picker.register:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["role_picker"]
